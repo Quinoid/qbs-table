@@ -1,11 +1,12 @@
-import React from 'react';
-import { Nav } from 'rsuite';
-import CodeView from 'react-code-view';
-import Frame from './components/Frame';
-import TableIcon from '@rsuite/icons/Table';
-import GithubIcon from '@rsuite/icons/legacy/Github';
 import BookIcon from '@rsuite/icons/legacy/Book';
+import GithubIcon from '@rsuite/icons/legacy/Github';
+import TableIcon from '@rsuite/icons/Table';
 import kebabCase from 'lodash/kebabCase';
+import React from 'react';
+import CodeView from 'react-code-view';
+import { Nav } from 'rsuite';
+
+import Frame from './components/Frame';
 
 interface ExampleType {
   title: string;
@@ -64,7 +65,7 @@ const App = (props: ExamplesProps) => {
             eventKey="apis"
             target="_blank"
             icon={<BookIcon />}
-            href="https://github.com/rsuite/rsuite-table#api"
+            href="https://github.com/Quinoid/qbs-table#api"
           >
             APIs
           </Nav.Item>
@@ -72,7 +73,7 @@ const App = (props: ExamplesProps) => {
             eventKey="components"
             target="_blank"
             icon={<GithubIcon />}
-            href="https://github.com/rsuite/rsuite-table"
+            href="https://github.com/Quinoid/qbs-table"
           >
             Github
           </Nav.Item>
