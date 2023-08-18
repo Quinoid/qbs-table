@@ -1,6 +1,6 @@
 {
   "name": "qbs-table",
-  "version": "5.11.1",
+  "version": "1.0.1",
   "description": "A React table component",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -35,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:rsuite/rsuite-table.git"
+    "url": "git@github.com:Quinoid/qbs-table.git"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",

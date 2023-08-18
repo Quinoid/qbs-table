@@ -6,8 +6,8 @@ import HeartIcon from '@rsuite/icons/legacy/HeartO';
 const Header = () => {
   return (
     <Stack className="header" spacing={8}>
-      <a href="https://www.npmjs.com/package/rsuite-table" target="_blank" rel="noreferrer">
-        <img alt="npm" src="https://img.shields.io/npm/v/rsuite-table?style=for-the-badge" />
+      <a href="https://www.npmjs.com/package/qbs-table" target="_blank" rel="noreferrer">
+        <img alt="npm" src="https://img.shields.io/npm/v/qbs-table?style=for-the-badge" />
       </a>
       <IconButton
         icon={<HeartIcon style={{ fontSize: 20 }} color="red" />}
@@ -16,7 +16,7 @@ const Header = () => {
       />
       <IconButton
         icon={<GithubIcon style={{ fontSize: 20 }} />}
-        href="https://github.com/rsuite/rsuite-table"
+        href="https://github.com/rsuite/qbs-table"
         target="_blank"
       />
     </Stack>

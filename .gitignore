@@ -37,7 +37,9 @@ jspm_packages
 .node_repl_history
 .DS_Store
 
-
+dist
+lib
+es
 .vscode/
 
 yarn.lock

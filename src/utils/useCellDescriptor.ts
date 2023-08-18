@@ -2,7 +2,6 @@ import React, { useState, useCallback, useRef } from 'react';
 import addStyle from 'dom-lib/addStyle';
 import addClass from 'dom-lib/addClass';
 import removeClass from 'dom-lib/removeClass';
-import omit from 'lodash/omit';
 import merge from 'lodash/merge';
 import { SCROLLBAR_WIDTH, SORT_TYPE } from '../constants';
 import { SortType, RowDataType } from '../@types/common';
@@ -64,7 +63,7 @@ const useCellDescriptor = <Row extends RowDataType>(
     sortType: sortTypeProp,
     defaultSortType,
     sortColumn,
-    rowHeight,
+    // rowHeight,
     onSortColumn,
     onHeaderCellResize,
     prefix
@@ -190,7 +189,7 @@ const useCellDescriptor = <Row extends RowDataType>(
   }
 
   const columns = getTableColumns(children) as React.ReactElement[];
-  const count = columns.length;
+  // const count = columns.length;
   const { totalFlexGrow, totalWidth } = getTotalByColumns(columns);
 
   React.Children.forEach(columns, (column: React.ReactElement<ColumnProps>, index) => {
@@ -226,17 +225,17 @@ const useCellDescriptor = <Row extends RowDataType>(
         );
       }
 
-      const cellProps = {
-        ...omit(columnProps, ['children']),
-        'aria-colindex': index + 1,
-        left,
-        headerHeight,
-        key: index,
-        width: cellWidth,
-        height: typeof rowHeight === 'function' ? rowHeight() : rowHeight,
-        firstColumn: index === 0,
-        lastColumn: index === count - 1
-      };
+      // const cellProps = {
+      //   ...omit(columnProps, ['children']),
+      //   'aria-colindex': index + 1,
+      //   left,
+      //   headerHeight,
+      //   key: index,
+      //   width: cellWidth,
+      //   height: typeof rowHeight === 'function' ? rowHeight() : rowHeight,
+      //   firstColumn: index === 0,
+      //   lastColumn: index === count - 1
+      // };
 
       if (showHeader && headerHeight) {
         const headerCellProps = {
@@ -262,10 +261,12 @@ const useCellDescriptor = <Row extends RowDataType>(
           });
         }
 
-        headerCells.push(React.cloneElement(headerCell, { ...cellProps, ...headerCellProps }));
+        // headerCells.push(React.cloneElement(headerCell, { ...cellProps, ...headerCellProps }));
+        headerCells.push(React.cloneElement(headerCell));
       }
 
-      bodyCells.push(React.cloneElement(cell, cellProps));
+      // bodyCells.push(React.cloneElement(cell, cellProps));
+      bodyCells.push(React.cloneElement(cell));
 
       left += cellWidth;
     }
