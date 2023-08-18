@@ -1,5 +1,5 @@
 {
-  "name": "rsuite-table",
+  "name": "qbs-table",
   "version": "5.11.0",
   "description": "A React table component",
   "main": "lib/index.js",
