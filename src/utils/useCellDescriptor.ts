@@ -91,12 +91,6 @@ const useCellDescriptor = <Row extends RowDataType>(
     [prefix, tableRef]
   );
 
-  /**
-   * storage column width from props.
-   * if current column width not equal initial column width, use current column width and update cache.
-   */
-  const initialColumnWidths = useRef({});
-
   const columnWidths = useRef({});
 
   useMount(() => {
@@ -107,6 +101,10 @@ const useCellDescriptor = <Row extends RowDataType>(
   useUpdateEffect(() => {
     clearCache();
   }, [children, sortColumn, sortType, tableWidth.current, scrollX.current, minScrollX.current]);
+
+  useUpdateEffect(() => {
+    columnWidths.current = {};
+  }, [children]);
 
   const handleColumnResizeEnd = useCallback(
     (columnWidth: number, _cursorDelta: number, dataKey: any, index: number) => {
@@ -213,33 +211,9 @@ const useCellDescriptor = <Row extends RowDataType>(
       const headerCell = columnChildren[0] as React.ReactElement<CellProps>;
       const cell = columnChildren[1] as React.ReactElement<CellProps>;
 
-      const cellWidthId = `${cell.props.dataKey}_${index}_width`;
-
-      // get column width from cache.
-      const initialColumnWidth = initialColumnWidths.current?.[cellWidthId];
-
-      const currentWidth = columnWidths.current?.[cellWidthId];
+      const currentWidth = columnWidths.current?.[`${cell.props.dataKey}_${index}_width`];
 
       let cellWidth = currentWidth || width || 0;
-
-      const isControlled = typeof width === 'number' && typeof onResize === 'function';
-
-      /**
-       * in resizable mode,
-       *    if width !== initialColumnWidth, use current column width and update cache.
-       */
-      if (resizable && (initialColumnWidth || width) && initialColumnWidth !== width) {
-        // initial or update initialColumnWidth cache.
-        initialColumnWidths.current[cellWidthId] = width;
-        /**
-         * if currentWidth exist, update columnWidths cache.
-         */
-        if (currentWidth) {
-          columnWidths.current[cellWidthId] = width;
-          // update cellWidth
-          cellWidth = width;
-        }
-      }
 
       if (tableWidth.current && flexGrow && totalFlexGrow) {
         const grewWidth = Math.max(
@@ -259,7 +233,7 @@ const useCellDescriptor = <Row extends RowDataType>(
         left,
         headerHeight,
         key: index,
-        width: isControlled ? width : cellWidth,
+        width: cellWidth,
         height: typeof rowHeight === 'function' ? rowHeight() : rowHeight,
         firstColumn: index === 0,
         lastColumn: index === count - 1
