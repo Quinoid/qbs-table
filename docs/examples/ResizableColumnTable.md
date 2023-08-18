@@ -30,7 +30,7 @@ const App = () => {
         <Cell dataKey="lastName" />
       </Column>
 
-      <Column width={200} resizable flexGrow={1}>
+      <Column width={200} resizable>
         <HeaderCell>City</HeaderCell>
         <Cell dataKey="city" />
       </Column>
